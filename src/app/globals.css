@@ -2,18 +2,276 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 17, 24, 39;
-  --background-end-rgb: 31, 41, 55;
+.bg-gradient {
+  background: linear-gradient(
+    225deg,
+    #10002b 0%,
+    #240046 25%,
+    #3c096c 50%,
+    #5a189a 75%,
+    #7b2cbf 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--background-start-rgb)),
-    rgb(var(--background-end-rgb))
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* Rest of your existing CSS remains exactly the same */
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Text fade in animation */
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* First button animation */
+.throw-in-first {
+  opacity: 0;
+  transform: translateY(100vh);
+  animation: throwInFirst 1s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes throwInFirst {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+  60% {
+    transform: translateY(-30px);
+  }
+  75% {
+    transform: translateY(15px);
+  }
+  85% {
+    transform: translateY(-8px);
+  }
+  92% {
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Second button animation */
+.throw-in-second {
+  opacity: 0;
+  transform: translateY(100vh);
+  animation: throwInSecond 1s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards;
+  animation-delay: 1.2s;
+}
+
+@keyframes throwInSecond {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+  60% {
+    transform: translateY(-20px);
+  }
+  75% {
+    transform: translateY(10px);
+  }
+  85% {
+    transform: translateY(-5px);
+  }
+  92% {
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glass effect utility */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Add the new neon glow effect */
+.neon-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.neon-glow::after {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  opacity: 0;
+  transition: opacity 0.2s;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(186, 104, 255, 0.4) 0%,
+    rgba(161, 45, 255, 0.2) 25%,
+    transparent 50%
   );
-  min-height: 100vh;
+  pointer-events: none;
+}
+
+.neon-glow:hover::after {
+  opacity: 1;
+}
+
+/* Keep your existing CSS and update/add these parts: */
+
+.bubble-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20vh) translateX(var(--x-drift));
+    opacity: 0;
+  }
+}
+
+/* Add/update only the bubble container styles, keep ALL other CSS the same */
+.bubble-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-gradient {
+  background: linear-gradient(
+    225deg,
+    #10002b 0%,
+    #1a0040 25%,
+    #240046 50%,
+    #2d0052 75%,
+    #380066 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* Keep all existing CSS and add: */
+
+.button-sink {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-in-out;
+}
+
+.button-sink:active {
+  transform: translateY(4px) scale(0.99);
+}
+
+/* Optional: add subtle shadow transition */
+.button-sink {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.button-sink:active {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+/* Keep ALL other existing CSS exactly the same */
+
+/* Keep all existing CSS and update/add: */
+
+.button-sink {
+  transform: translateY(0);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-sink:active {
+  transform: translateY(4px) scale(0.98);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optional: Add these classes for better button interaction */
+button {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(139, 92, 246, 0.5);
+  outline-offset: 2px;
 }

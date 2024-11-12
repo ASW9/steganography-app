@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     return new NextResponse(outputBuffer, {
       headers: {
         'Content-Type': 'image/png',
-        'Content-Disposition': 'attachment; filename="encoded-image.png"',
+        'Content-Disposition': `attachment; filename="encoded-image.png"`,
       },
     })
   } catch (error) {
