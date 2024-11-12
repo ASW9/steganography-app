@@ -1,13 +1,11 @@
-'use client'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import * as Icons from 'lucide-react';
-
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { FaGithub } from 'react-icons/fa';
 
 export default function Header() {
-  
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <header className="bg-gray-900/50 backdrop-blur-sm shadow-lg">
@@ -31,7 +29,12 @@ export default function Header() {
           {/* Right side - Links */}
           <div className="flex items-center gap-6">
             {/* Course Link */}
-            <a href="https://g1ozago1ehq.typeform.com/to/d80QWhZv" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors duration-300">
+            <a
+              href="https://g1ozago1ehq.typeform.com/to/d80QWhZv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-white/80 hover:text-white transition-colors duration-300"
+            >
               <svg 
                 viewBox="0 0 24 24" 
                 width="24" 
@@ -45,7 +48,6 @@ export default function Header() {
               </svg>
               <span className="hidden sm:inline">Free Course</span>
             </a>
-            
 
             {/* GitHub Link */}
             <a
@@ -54,6 +56,7 @@ export default function Header() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-white/80 hover:text-white transition-colors duration-300"
             >
+              <FaGithub size={24} />
               <span className="hidden sm:inline">View on GitHub</span>
             </a>
           </div>
