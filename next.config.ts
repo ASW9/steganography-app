@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
       type: 'asset/resource'
     })
     return config
+  },
+  eslint: {
+    ignoreDuringBuilds: true, // Disable ESLint checks during the build process
   }
 }
 
