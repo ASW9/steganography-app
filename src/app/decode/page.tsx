@@ -9,7 +9,7 @@ export default function DecodePage() {
 
   const handleImageSelect = async (file: File) => {
     setLoading(true)
-    
+
     try {
       const formData = new FormData()
       formData.append('image', file)
@@ -23,7 +23,8 @@ export default function DecodePage() {
 
       const { message } = await response.json()
       setDecodedMessage(message)
-    } catch {
+    } catch (error) {
+      console.error('Failed to decode message:', error)
       alert('Failed to decode message. Please try again.')
       setDecodedMessage('')
     } finally {
@@ -38,14 +39,11 @@ export default function DecodePage() {
         
         <ImageUpload onImageSelect={handleImageSelect} currentFile={null} />
 
-        
-
         {loading && (
           <div className="text-center text-gray-300">
             Decoding message...
           </div>
         )}
-
 
         {decodedMessage && (
           <div className="p-4 bg-gray-700 rounded-lg">

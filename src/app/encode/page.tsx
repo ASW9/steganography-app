@@ -46,8 +46,8 @@ export default function EncodePage() {
       setFile(null)
       alert('Message hidden successfully! Image downloaded.')
 
-    } catch {
-      console.error('Error:')
+    } catch (error) {
+      console.error('Error:', error)
       alert('Failed to hide message. Please try again.')
     } finally {
       setLoading(false)
