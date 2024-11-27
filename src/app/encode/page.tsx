@@ -10,48 +10,41 @@ export default function EncodePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!file || !message) return
+    setLoading(true)
+    const formData = new FormData()
+    formData.append('image', file)
+    formData.append('message', message)
 
-    try {
-      setLoading(true)
-      const formData = new FormData()
-      formData.append('image', file)
-      formData.append('message', message)
+    const response = await fetch('/api/encode', {
+      method: 'POST',
+      body: formData,
+    })
 
-      const response = await fetch('/api/encode', {
-        method: 'POST',
-        body: formData,
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to encode message')
-      }
-
-      // Get the encoded image as a blob
-      const blob = await response.blob()
-
-      // Create download link
-      const url = window.URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `encoded-${file.name}` // Keep original file extension
-      document.body.appendChild(a)
-      a.click()
-
-      // Cleanup
-      window.URL.revokeObjectURL(url)
-      document.body.removeChild(a)
-
-      // Reset form
-      setMessage('')
-      setFile(null)
-      alert('Message hidden successfully! Image downloaded.')
-
-    } catch (error) {
-      console.error('Error:', error)
-      alert('Failed to hide message. Please try again.')
-    } finally {
-      setLoading(false)
+    if (!response.ok) {
+      throw new Error('Failed to encode message')
     }
+
+    // Get the encoded image as a blob
+    const blob = await response.blob()
+
+    // Create download link
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `encoded-${file.name}` // Keep original file extension
+    document.body.appendChild(a)
+    a.click()
+
+    // Cleanup
+    window.URL.revokeObjectURL(url)
+    document.body.removeChild(a)
+
+    // Reset form
+    setMessage('')
+    setFile(null)
+    alert('Message hidden successfully! Image downloaded.')
+
+  
   }
 
   return (

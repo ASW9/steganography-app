@@ -9,28 +9,20 @@ export default function DecodePage() {
 
   const handleImageSelect = async (file: File) => {
     setLoading(true)
+    const formData = new FormData()
+    formData.append('image', file)
 
-    try {
-      const formData = new FormData()
-      formData.append('image', file)
+    const response = await fetch('/api/decode', {
+      method: 'POST',
+      body: formData,
+    })
 
-      const response = await fetch('/api/decode', {
-        method: 'POST',
-        body: formData,
-      })
+    if (!response.ok) throw new Error('Decoding failed')
 
-      if (!response.ok) throw new Error('Decoding failed')
-
-      const { message } = await response.json()
-      setDecodedMessage(message)
-    } catch (error) {
-      console.error('Failed to decode message:', error)
-      alert('Failed to decode message. Please try again.')
-      setDecodedMessage('')
-    } finally {
-      setLoading(false)
-    }
+    const { message } = await response.json()
+    setDecodedMessage(message)
   }
+  
 
   return (
     <main className="min-h-screen p-8 bg-gradient-to-b from-gray-900 to-gray-800 text-white">

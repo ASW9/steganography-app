@@ -1,8 +1,6 @@
 export function encode(
     imageData: Buffer,
     message: string,
-    width: number,
-    height: number
   ): Buffer {
     // Convert message to binary string with length prefix
     const messageLength = message.length
