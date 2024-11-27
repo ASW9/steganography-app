@@ -20,9 +20,6 @@ export default function EncodePage() {
       body: formData,
     })
 
-    if (!response.ok) {
-      throw new Error('Failed to encode message')
-    }
 
     // Get the encoded image as a blob
     const blob = await response.blob()

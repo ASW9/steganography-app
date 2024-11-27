@@ -17,8 +17,6 @@ export default function DecodePage() {
       body: formData,
     })
 
-    if (!response.ok) throw new Error('Decoding failed')
-
     const { message } = await response.json()
     setDecodedMessage(message)
   }
